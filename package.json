@@ -25,6 +25,7 @@
     "@angular/router": "~10.0.6",
     "@ngrx/store": "^10.0.1",
     "firebase": "^8.0.2",
+    "libphonenumber-js": "^1.9.4",
     "node-forge": "^0.10.0",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",

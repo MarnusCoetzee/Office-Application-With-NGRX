@@ -17,9 +17,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-const components = [];
+import { ShellComponent } from './shell/shell.component';
+import { PhonePipe } from '../custom-pipes/phone.pipe';
+import { SignoutButtonDirective } from './shell/directives/signout-button.directive';
+const components = [ShellComponent, PhonePipe];
 
-const directives = [];
+const directives = [SignoutButtonDirective];
 
 const modules = [
   CommonModule,
