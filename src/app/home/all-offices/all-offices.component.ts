@@ -17,9 +17,21 @@ export class AllOfficesComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.initStoreFunctions();
+  }
+
+  private initStoreFunctions() {
     this.offices = this.store.select((store) => store.office.list);
     this.loading$ = this.store.select((store) => store.office.loading);
     this.error$ = this.store.select((store) => store.office.error);
     this.store.dispatch(new LoadOfficesAction());
   }
+
+  onClickNavigateOffice(id: string) {}
+
+  onClickOpenEditOfficeDialog(id: string) {}
+
+  onClickOpenDeleteOfficeDialog(id: string, officeName: string) {}
+
+  onClickOpenAddOfficeDialog() {}
 }
