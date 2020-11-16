@@ -12,7 +12,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { environment } from 'src/environments/environment.prod';
 import { SharedModule } from './shared/shared.module';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
