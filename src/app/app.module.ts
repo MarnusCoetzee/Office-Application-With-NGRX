@@ -12,6 +12,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { environment } from 'src/environments/environment.prod';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { OfficeReducer } from './store/reducers/office.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { OfficeEffects } from './store/effects/office.effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +26,8 @@ import { SharedModule } from './shared/shared.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     SharedModule,
+    StoreModule.forRoot({ office: OfficeReducer }),
+    EffectsModule.forRoot([OfficeEffects]),
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent],

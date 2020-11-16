@@ -21,9 +21,12 @@ import { ShellComponent } from './shell/shell.component';
 import { PhonePipe } from '../custom-pipes/phone.pipe';
 import { AddNewOfficeDirective } from './shell/directives/add-new-office.directive';
 import { SignoutButtonDirective } from './shell/directives/signout-button.directive';
+import { OfficeService } from '../services/office.service';
 const components = [ShellComponent, PhonePipe];
 
 const directives = [AddNewOfficeDirective, SignoutButtonDirective];
+
+const providers = [OfficeService];
 
 const modules = [
   CommonModule,
@@ -52,5 +55,6 @@ const modules = [
   declarations: [...components, ...directives],
   imports: [...modules],
   exports: [...components, ...modules, ...directives],
+  providers: [...providers],
 })
 export class SharedModule {}
