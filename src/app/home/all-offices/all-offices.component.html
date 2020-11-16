@@ -1,1 +1,16 @@
-<h1 *ngFor="let office of offices | async">{{ office.name }}</h1>
+<div *ngIf="loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="container">
+    <!--If Now Offices, show empty-->
+    <div *ngIf="offices | async">
+      <!--Loop through offices-->
+    </div>
+    <!--Array empty, show noItems-->
+    <div *ngIf="(offices | async).length == 0">
+      <p>No Items :(</p>
+    </div>
+  </div>
+</div>

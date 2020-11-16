@@ -16,7 +16,6 @@ export class OfficeEffects {
     mergeMap(() =>
       this.officeService.getUserOffices().pipe(
         map((data) => {
-          console.log('Getting some good shit');
           return new LoadOfficesSuccessAction(data);
         }),
         catchError((error) => of(new LoadOfficesFailureAction(error)))

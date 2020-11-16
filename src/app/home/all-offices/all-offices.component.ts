@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Office } from '../../store/models/office.model';
 import { AppState } from '../../store/models/app-state.model';
 import { LoadOfficesAction } from '../../store/actions/office.actions';
@@ -20,10 +20,6 @@ export class AllOfficesComponent implements OnInit {
     this.offices = this.store.select((store) => store.office.list);
     this.loading$ = this.store.select((store) => store.office.loading);
     this.error$ = this.store.select((store) => store.office.error);
-
     this.store.dispatch(new LoadOfficesAction());
-    this.offices.subscribe((result) => {
-      console.log(result);
-    });
   }
 }

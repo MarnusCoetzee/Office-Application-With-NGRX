@@ -21,7 +21,6 @@ export class OfficeService {
    * Returns all offices owned by user
    */
   getUserOffices() {
-    console.log('getting the good shit');
     return this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
