@@ -5,10 +5,10 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: '[appSignoutButton]',
 })
 export class SignoutButtonDirective {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   @HostListener('click')
   onClick() {
-    console.log('signout');
+    this.authService.signout();
   }
 }

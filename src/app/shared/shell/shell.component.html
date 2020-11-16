@@ -21,8 +21,8 @@
         mat-list-item
         routerLink="/"
         *ngIf="afAuth.authState | async"
-        (click)="drawer.close()"
         appSignoutButton
+        (click)="drawer.close()"
         >Logout</a
       >
     </mat-nav-list>

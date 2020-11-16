@@ -19,10 +19,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShellComponent } from './shell/shell.component';
 import { PhonePipe } from '../custom-pipes/phone.pipe';
+import { AddNewOfficeDirective } from './shell/directives/add-new-office.directive';
 import { SignoutButtonDirective } from './shell/directives/signout-button.directive';
 const components = [ShellComponent, PhonePipe];
 
-const directives = [SignoutButtonDirective];
+const directives = [AddNewOfficeDirective, SignoutButtonDirective];
 
 const modules = [
   CommonModule,

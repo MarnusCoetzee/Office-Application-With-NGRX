@@ -1,1 +1,4 @@
-<p>landing-page works!</p>
+<!--Show auth screen if a user is not authenticated-->
+<div *ngIf="!(afAuth.authState | async)">
+  <app-auth></app-auth>
+</div>
