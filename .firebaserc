@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "office-app-f5811": {
+      "hosting": {
+        "ngrx-office-app": [
+          "office-app-f5811"
+        ]
+      }
+    }
+  }
+}
