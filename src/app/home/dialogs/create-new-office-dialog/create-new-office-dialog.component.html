@@ -1,1 +1,88 @@
-<p>create-new-office-dialog works!</p>
+<div *ngIf="isLoading">
+  <mat-spinner style="margin-top: 5vh"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="container">
+    <!--Exit Button-->
+    <div class="exit-button">
+      <button mat-icon-button (click)="onClickCloseDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <br />
+    <!--Heading Section-->
+    <div class="heading">
+      <h1>Add New Office</h1>
+    </div>
+    <!--Form Fields-->
+    <div class="form-fields">
+      <form [formGroup]="officeDetailsForm">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Office Name"
+            type="text"
+            formControlName="officeName"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Email Address"
+            type="email"
+            formControlName="officeEmailAddress"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Office Tell"
+            type="tel"
+            formControlName="officeTellNumber"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+            rows="3"
+            matInput
+            placeholder="Address"
+            type="text"
+            formControlName="officeAddress"
+            autocomplete="off"
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Max number of occupants"
+            type="number"
+            formControlName="maxOccupants"
+            autocomplete="off"
+            min="0"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Office Colour</mat-label>
+          <mat-select [(value)]="selectedColour">
+            <mat-option
+              *ngFor="let color of officeColours"
+              [value]="color.value"
+            >
+              {{ color.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+    <!--Submit Button-->
+    <div class="action-btn">
+      <button mat-raised-button [disabled]="officeDetailsForm.invalid">
+        Save Office
+      </button>
+    </div>
+  </div>
+</div>

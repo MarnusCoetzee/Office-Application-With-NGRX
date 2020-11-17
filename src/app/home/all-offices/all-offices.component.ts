@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Office } from '../../store/models/office.model';
 import { AppState } from '../../store/models/app-state.model';
 import { LoadOfficesAction } from '../../store/actions/office.actions';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateNewOfficeDialogComponent } from '../dialogs/create-new-office-dialog/create-new-office-dialog.component';
 @Component({
   selector: 'app-all-offices',
   templateUrl: './all-offices.component.html',
@@ -14,7 +16,7 @@ export class AllOfficesComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<Error>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initStoreFunctions();
@@ -27,11 +29,18 @@ export class AllOfficesComponent implements OnInit {
     this.store.dispatch(new LoadOfficesAction());
   }
 
+  /**
+   * Open Add New Office Dialog
+   */
+  onClickOpenAddOfficeDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    this.dialog.open(CreateNewOfficeDialogComponent, dialogConfig);
+  }
   onClickNavigateOffice(id: string) {}
 
   onClickOpenEditOfficeDialog(id: string) {}
 
   onClickOpenDeleteOfficeDialog(id: string, officeName: string) {}
-
-  onClickOpenAddOfficeDialog() {}
 }
