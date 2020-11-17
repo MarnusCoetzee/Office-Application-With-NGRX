@@ -1,8 +1,8 @@
-<div *ngIf="isLoading">
+<div *ngIf="loading$ | async">
   <mat-spinner style="margin-top: 5vh"></mat-spinner>
 </div>
 
-<div *ngIf="!isLoading">
+<div *ngIf="!(loading$ | async)">
   <div class="container">
     <!--Exit Button-->
     <div class="exit-button">

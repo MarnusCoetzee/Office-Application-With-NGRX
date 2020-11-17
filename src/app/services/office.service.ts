@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { switchMap } from 'rxjs/operators';
 import { Office } from '../store/models/office.model';
 @Injectable({
   providedIn: 'root',
 })
 export class OfficeService {
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private snackbar: MatSnackBar
+  ) {}
 
   /**
    * OFFICE Functionality
@@ -34,5 +38,22 @@ export class OfficeService {
         }
       })
     );
+  }
+
+  // Add new office
+  addNewOffice(id: string, office: Office) {
+    return this.db
+      .collection('offices')
+      .doc(id)
+      .set(office)
+      .then(() => {
+        this.snackbar.open('Successfully created office', '', {
+          duration: 2000,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      });
   }
 }

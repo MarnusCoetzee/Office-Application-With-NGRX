@@ -35,6 +35,23 @@ export function OfficeReducer(
         error: action.payload,
         loading: false,
       };
+    case OfficeActionTypes.ADD_OFFICE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OfficeActionTypes.ADD_OFFICE_SUCCESS:
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+        loading: false,
+      };
+    case OfficeActionTypes.ADD_OFFICE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }
