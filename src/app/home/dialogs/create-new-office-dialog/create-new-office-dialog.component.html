@@ -80,7 +80,11 @@
     </div>
     <!--Submit Button-->
     <div class="action-btn">
-      <button mat-raised-button [disabled]="officeDetailsForm.invalid">
+      <button
+        mat-raised-button
+        [disabled]="officeDetailsForm.invalid"
+        (click)="onClickSaveOfficeToFirestore()"
+      >
         Save Office
       </button>
     </div>
