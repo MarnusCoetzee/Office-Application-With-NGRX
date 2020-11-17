@@ -11,6 +11,7 @@ import {
   AddOfficeAction,
   AddOfficeSuccessAction,
   AddOfficeFailureAction,
+  DeleteOfficeAction,
 } from '../actions/office.actions';
 @Injectable()
 export class OfficeEffects {
@@ -36,6 +37,10 @@ export class OfficeEffects {
         })
         .catch((error) => of(new AddOfficeFailureAction(error)))
     )
+  );
+
+  @Effect() deleteOffice$ = this.actions$.pipe(
+    ofType<DeleteOfficeAction>(OfficeActionTypes.DELETE_OFFICE)
   );
 
   constructor(

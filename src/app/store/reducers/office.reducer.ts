@@ -1,3 +1,4 @@
+import { act } from '@ngrx/effects';
 import { OfficeActionTypes, OfficeAction } from '../actions/office.actions';
 import { Office } from '../models/office.model';
 
@@ -18,35 +19,61 @@ export function OfficeReducer(
   action: OfficeAction
 ) {
   switch (action.type) {
+    // Load Office
     case OfficeActionTypes.LOAD_OFFICE:
       return {
         ...state,
         loading: true,
       };
+    // Load Office Success
     case OfficeActionTypes.LOAD_OFFICE_SUCCESS:
       return {
         ...state,
         list: action.payload,
         loading: false,
       };
+    // Load Office Failure
     case OfficeActionTypes.LOAD_OFFICE_FAILURE:
       return {
         ...state,
         error: action.payload,
         loading: false,
       };
+    // Add Office
     case OfficeActionTypes.ADD_OFFICE:
       return {
         ...state,
         loading: true,
       };
+    // Add Office Success
     case OfficeActionTypes.ADD_OFFICE_SUCCESS:
       return {
         ...state,
         list: [...state.list, action.payload],
         loading: false,
       };
+    // Add Office Failure
     case OfficeActionTypes.ADD_OFFICE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    // Delete Office
+    case OfficeActionTypes.DELETE_OFFICE:
+      return {
+        ...state,
+        loading: true,
+      };
+    // Delete Office Success
+    case OfficeActionTypes.DELETE_OFFICE_SUCCESS:
+      return {
+        ...state,
+        list: state.list.filter((item) => item.id !== action.payload),
+        loading: false,
+      };
+    // Delete Office Failure
+    case OfficeActionTypes.DELETE_OFFICE_FAILURE:
       return {
         ...state,
         error: action.payload,

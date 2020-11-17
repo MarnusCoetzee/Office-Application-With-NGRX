@@ -2,12 +2,18 @@ import { Action } from '@ngrx/store';
 import { Office } from '../models/office.model';
 
 export enum OfficeActionTypes {
+  // load offices
   LOAD_OFFICE = '[OFFICE] Load Office',
   LOAD_OFFICE_SUCCESS = '[OFFICE] Load Office Success',
   LOAD_OFFICE_FAILURE = '[OFFICE] Load Office Failure',
-  ADD_OFFICE = '[Office] Add Office',
-  ADD_OFFICE_SUCCESS = '[Office] Add Office Success',
-  ADD_OFFICE_FAILURE = '[Office] Add Office Failure',
+  // add office
+  ADD_OFFICE = '[OFFICE] Add Office',
+  ADD_OFFICE_SUCCESS = '[OFFICE] Add Office Success',
+  ADD_OFFICE_FAILURE = '[OFFICE] Add Office Failure',
+  // delete office
+  DELETE_OFFICE = '[OFFICE] Delete Office',
+  DELETE_OFFICE_SUCCESS = '[OFFICE] Delete Office Success',
+  DELETE_OFFICE_FAILURE = '[OFFICE] Delete Office Failure',
 }
 
 /**
@@ -45,10 +51,31 @@ export class AddOfficeFailureAction implements Action {
   constructor(public payload: Error) {}
 }
 
+/**
+ * Delete Office Actions
+ */
+export class DeleteOfficeAction implements Action {
+  readonly type = OfficeActionTypes.DELETE_OFFICE;
+  constructor(public payload: string) {}
+}
+
+export class DeleteOfficeSuccessAction implements Action {
+  readonly type = OfficeActionTypes.DELETE_OFFICE_SUCCESS;
+  constructor(public payload: string) {}
+}
+
+export class DeleteOfficeFailureAction implements Action {
+  readonly type = OfficeActionTypes.DELETE_OFFICE_FAILURE;
+  constructor(public payload: string) {}
+}
+
 export type OfficeAction =
   | LoadOfficesAction
   | LoadOfficesSuccessAction
   | LoadOfficesFailureAction
   | AddOfficeAction
   | AddOfficeSuccessAction
-  | AddOfficeFailureAction;
+  | AddOfficeFailureAction
+  | DeleteOfficeAction
+  | DeleteOfficeSuccessAction
+  | DeleteOfficeFailureAction;
