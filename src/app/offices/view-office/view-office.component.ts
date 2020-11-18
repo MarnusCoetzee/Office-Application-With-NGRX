@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { LoadSingleOfficeAction } from 'src/app/store/actions/office.actions';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { Office } from 'src/app/store/models/office.model';
-import { Employee } from '../../store/models/staff.model';
+import { Staff } from '../../store/models/staff.model';
 @Component({
   selector: 'app-view-office',
   templateUrl: './view-office.component.html',
@@ -14,7 +14,7 @@ import { Employee } from '../../store/models/staff.model';
 })
 export class ViewOfficeComponent implements OnInit {
   office$: Observable<Office>;
-  employees$: Observable<Array<Employee>>;
+  employees$: Observable<Array<Staff>>;
   loading$: Observable<boolean>;
   error$: Observable<Error>;
 
@@ -22,8 +22,8 @@ export class ViewOfficeComponent implements OnInit {
 
   searchForm: FormGroup;
   showFiltered: boolean = false;
-  filteredEmployees: Array<Employee>;
-  employees: Array<Employee>;
+  filteredEmployees: Array<Staff>;
+  employees: Array<Staff>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
