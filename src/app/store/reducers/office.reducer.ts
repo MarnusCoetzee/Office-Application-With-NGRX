@@ -1,12 +1,14 @@
 import { act } from '@ngrx/effects';
 import { OfficeActionTypes, OfficeAction } from '../actions/office.actions';
 import { Office } from '../models/office.model';
+import { Staff } from '../models/staff.model';
 
 export interface OfficesState {
   list: Office[];
   office: Office;
   loading: boolean;
   error: Error;
+  staff: Staff[];
 }
 
 const initialState: OfficesState = {
@@ -24,6 +26,7 @@ const initialState: OfficesState = {
     totalEmployees: 0,
     officeColor: 'black',
   },
+  staff: [],
 };
 
 export function OfficeReducer(
@@ -134,6 +137,26 @@ export function OfficeReducer(
         ...state,
         loading: false,
         error: action.payload,
+      };
+    /**
+     * Load Office Staff
+     */
+    case OfficeActionTypes.LOAD_OFFICE_STAFF:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OfficeActionTypes.LOAD_OFFICE_STAFF_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        staff: action.staff,
+      };
+    case OfficeActionTypes.LOAD_OFFICE_STAFF_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
       };
     default:
       return state;

@@ -35,6 +35,14 @@
         </mat-form-field>
       </form>
     </div>
-    <!--Area That Displays Employees-->
+  </div>
+  <!--Area That Displays Employees-->
+  <div *ngIf="(staff$ | async).length > 0">
+    <div *ngFor="let staff of staff$ | async">
+      <p>{{ staff.firstName }}</p>
+    </div>
+  </div>
+  <div *ngIf="(staff$ | async).length == 0">
+    <p>The Staff Does Not Exists</p>
   </div>
 </div>

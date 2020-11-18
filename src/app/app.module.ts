@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { OfficeReducer } from './store/reducers/office.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OfficeEffects } from './store/effects/office.effects';
+import { StaffEffects } from './store/effects/staff.effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +28,7 @@ import { OfficeEffects } from './store/effects/office.effects';
     AngularFireAuthModule,
     SharedModule,
     StoreModule.forRoot({ office: OfficeReducer }),
-    EffectsModule.forRoot([OfficeEffects]),
+    EffectsModule.forRoot([OfficeEffects, StaffEffects]),
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent],

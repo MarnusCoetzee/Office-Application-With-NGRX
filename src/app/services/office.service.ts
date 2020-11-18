@@ -48,6 +48,14 @@ export class OfficeService {
     return this.db.collection('offices').doc(id).valueChanges();
   }
 
+  getOfficeEmployees(id: string) {
+    return this.db
+      .collection('offices')
+      .doc(id)
+      .collection('staff')
+      .valueChanges();
+  }
+
   // Add new office
   addNewOffice(id: string, office: Office) {
     return this.db

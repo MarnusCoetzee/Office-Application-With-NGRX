@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LoadSingleOfficeAction } from 'src/app/store/actions/office.actions';
+import { LoadStaffAction } from 'src/app/store/actions/staff.actions';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { Office } from 'src/app/store/models/office.model';
 import { Staff } from '../../store/models/staff.model';
@@ -14,9 +15,12 @@ import { Staff } from '../../store/models/staff.model';
 })
 export class ViewOfficeComponent implements OnInit {
   office$: Observable<Office>;
-  employees$: Observable<Array<Staff>>;
+  staff$: Observable<Array<Staff>>;
   loading$: Observable<boolean>;
   error$: Observable<Error>;
+
+  staffLoading$: Observable<boolean>;
+  staffError$: Observable<Error>;
 
   officeId: string;
 
@@ -34,8 +38,8 @@ export class ViewOfficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.officeId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.initSearchForm();
     this.loadSingleOffice(this.officeId);
+    this.initSearchForm();
   }
 
   private initSearchForm() {
@@ -74,9 +78,11 @@ export class ViewOfficeComponent implements OnInit {
 
   private loadSingleOffice(id: string) {
     this.office$ = this.store.select((store) => store.office.office);
+    this.staff$ = this.store.select((store) => store.office?.staff);
     this.loading$ = this.store.select((store) => store.office.loading);
     this.error$ = this.store.select((store) => store.office.error);
     this.store.dispatch(new LoadSingleOfficeAction(id));
+    this.store.dispatch(new LoadStaffAction(id));
   }
 
   onClickNavigateBack() {

@@ -2,14 +2,14 @@ import { StaffActiontypes, StaffAction } from '../actions/staff.actions';
 import { Staff } from '../models/staff.model';
 
 export interface StaffState {
-  staffMembers: [];
+  list: Staff[];
   staff: Staff;
   loading: boolean;
   error: Error;
 }
 
 const initialState: StaffState = {
-  staffMembers: [],
+  list: [],
   staff: {
     firstName: '',
     lastName: '',
@@ -35,7 +35,7 @@ export function StaffReducer(
     case StaffActiontypes.LOAD_STAFF_SUCCESS:
       return {
         ...state,
-        staffMembers: action.payload,
+        list: [...action.payload],
         loading: false,
       };
     case StaffActiontypes.LOAD_STAFF_FAILURE:

@@ -19,8 +19,16 @@ import {
   EditOfficeAction,
   EditOfficeSuccessAction,
   EditOfficeFailureAction,
+  LoadOfficeStaffSuccessAction,
+  LoadOfficeStaffAction,
 } from '../actions/office.actions';
 import { Office } from '../models/office.model';
+import {
+  LoadStaffAction,
+  LoadStaffFailureAction,
+} from '../actions/staff.actions';
+import { StaffService } from 'src/app/services/staff.service';
+import { Staff } from '../models/staff.model';
 @Injectable()
 export class OfficeEffects {
   /**
@@ -98,8 +106,21 @@ export class OfficeEffects {
     )
   );
 
+  @Effect() loadAllStaff$ = this.actions$.pipe(
+    ofType<LoadOfficeStaffAction>(OfficeActionTypes.LOAD_OFFICE_STAFF),
+    mergeMap((payload) => {
+      return this.staffService.loadAllStaff(payload.officeId).pipe(
+        map((staff: Array<Staff>) => {
+          return new LoadOfficeStaffSuccessAction(staff);
+        }),
+        catchError((error) => of(new LoadStaffFailureAction(error)))
+      );
+    })
+  );
+
   constructor(
     private actions$: Actions,
-    private officeService: OfficeService
+    private officeService: OfficeService,
+    private staffService: StaffService
   ) {}
 }

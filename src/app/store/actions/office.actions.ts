@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Office } from '../models/office.model';
+import { Staff } from '../models/staff.model';
 
 export enum OfficeActionTypes {
   // load offices
@@ -22,6 +23,10 @@ export enum OfficeActionTypes {
   EDIT_OFFICE = '[OFFICE] Edit Office',
   EDIT_OFFICE_SUCCESS = '[OFFICE] Edit Office Success',
   EDIT_OFFICE_FAILURE = '[OFFICE] Edit Office Failure',
+  // Load Office Employees
+  LOAD_OFFICE_STAFF = '[OFFICE] Load Staff',
+  LOAD_OFFICE_STAFF_SUCCESS = '[OFFICE] Load Staff Success',
+  LOAD_OFFICE_STAFF_FAILURE = '[OFFICE] Load Staff Failure',
 }
 
 /**
@@ -113,6 +118,21 @@ export class EditOfficeFailureAction implements Action {
   constructor(public payload: Error) {}
 }
 
+export class LoadOfficeStaffAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF;
+  constructor(public officeId: string) {}
+}
+
+export class LoadOfficeStaffSuccessAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF_SUCCESS;
+  constructor(public staff: Array<Staff>) {}
+}
+
+export class LoadOfficeStaffFailureAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF_FAILURE;
+  constructor(public error: Error) {}
+}
+
 export type OfficeAction =
   | LoadOfficesAction
   | LoadOfficesSuccessAction
@@ -128,4 +148,7 @@ export type OfficeAction =
   | LoadSingleOfficeFailureAction
   | EditOfficeAction
   | EditOfficeSuccessAction
-  | EditOfficeFailureAction;
+  | EditOfficeFailureAction
+  | LoadOfficeStaffAction
+  | LoadOfficeStaffSuccessAction
+  | LoadOfficeStaffFailureAction;
