@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateNewOfficeDialogComponent } from '../dialogs/create-new-office-dialog/create-new-office-dialog.component';
 import { DeleteOfficeDialogComponent } from '../dialogs/delete-office-dialog/delete-office-dialog.component';
 import { Router } from '@angular/router';
+import { EditOfficeDialogComponent } from '../dialogs/edit-office-dialog/edit-office-dialog.component';
 @Component({
   selector: 'app-all-offices',
   templateUrl: './all-offices.component.html',
@@ -53,7 +54,13 @@ export class AllOfficesComponent implements OnInit {
     this.dialog.open(CreateNewOfficeDialogComponent, dialogConfig);
   }
 
-  onClickOpenEditOfficeDialog(id: string) {}
+  onClickOpenEditOfficeDialog(id: string, office: Office) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    dialogConfig.data = { id, office };
+    this.dialog.open(EditOfficeDialogComponent, dialogConfig);
+  }
 
   onClickOpenDeleteOfficeDialog(id: string, officeName: string) {
     const dialogConfig = new MatDialogConfig();

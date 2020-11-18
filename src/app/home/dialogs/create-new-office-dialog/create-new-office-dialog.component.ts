@@ -47,7 +47,7 @@ export class CreateNewOfficeDialogComponent implements OnInit {
     this.error$ = this.store.select((store) => store.office.error);
     this.officeDetailsForm = this.fb.group({
       officeName: ['', Validators.required],
-      officeEmailAddress: ['', Validators.required, Validators.email],
+      officeEmailAddress: ['', Validators.required],
       officeTellNumber: ['', Validators.required],
       officeAddress: ['', Validators.required],
       maxOccupants: ['', Validators.required],

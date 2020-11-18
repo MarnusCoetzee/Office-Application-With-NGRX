@@ -65,6 +65,23 @@ export class OfficeService {
       });
   }
 
+  // Edit Office
+  editOffice(id: string, office: Office) {
+    return this.db
+      .collection('offices')
+      .doc(id)
+      .update(office)
+      .then(() => {
+        this.snackbar.open('Successfully Updated office', '', {
+          duration: 2000,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      });
+  }
+
   // delete office
   deleteOffice(id: string) {
     return this.db

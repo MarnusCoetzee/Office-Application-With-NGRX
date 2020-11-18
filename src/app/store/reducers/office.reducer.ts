@@ -116,6 +116,25 @@ export function OfficeReducer(
         error: action.payload,
         loading: false,
       };
+    // Edit Office Action
+    case OfficeActionTypes.EDIT_OFFICE:
+      return {
+        ...state,
+        loading: true,
+      };
+    // Edit office Success Action
+    case OfficeActionTypes.EDIT_OFFICE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    // Edit Office Failure Action
+    case OfficeActionTypes.EDIT_OFFICE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

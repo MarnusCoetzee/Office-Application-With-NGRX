@@ -16,6 +16,9 @@ import {
   DeleteOfficeFailureAction,
   LoadSingleOfficeAction,
   LoadSingleOfficeSuccessAction,
+  EditOfficeAction,
+  EditOfficeSuccessAction,
+  EditOfficeFailureAction,
 } from '../actions/office.actions';
 import { Office } from '../models/office.model';
 @Injectable()
@@ -79,6 +82,19 @@ export class OfficeEffects {
         .catch((error) => {
           new DeleteOfficeFailureAction(error);
         })
+    )
+  );
+
+  /**
+   * Edit Office
+   */
+  @Effect({ dispatch: false }) editOffice$ = this.actions$.pipe(
+    ofType<EditOfficeAction>(OfficeActionTypes.EDIT_OFFICE),
+    mergeMap((data) =>
+      this.officeService
+        .editOffice(data.officeId, data.office)
+        .then(() => new EditOfficeSuccessAction(data.officeId))
+        .catch((error) => new EditOfficeFailureAction(error))
     )
   );
 

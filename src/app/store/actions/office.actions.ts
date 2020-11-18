@@ -18,6 +18,10 @@ export enum OfficeActionTypes {
   DELETE_OFFICE = '[OFFICE] Delete Office',
   DELETE_OFFICE_SUCCESS = '[OFFICE] Delete Office Success',
   DELETE_OFFICE_FAILURE = '[OFFICE] Delete Office Failure',
+  // Edit Office
+  EDIT_OFFICE = '[OFFICE] Edit Office',
+  EDIT_OFFICE_SUCCESS = '[OFFICE] Edit Office Success',
+  EDIT_OFFICE_FAILURE = '[OFFICE] Edit Office Failure',
 }
 
 /**
@@ -91,6 +95,24 @@ export class DeleteOfficeFailureAction implements Action {
   constructor(public payload: string) {}
 }
 
+/**
+ * Edit Office Actions
+ */
+export class EditOfficeAction implements Action {
+  readonly type = OfficeActionTypes.EDIT_OFFICE;
+  constructor(public officeId: string, public office: Office) {}
+}
+
+export class EditOfficeSuccessAction implements Action {
+  readonly type = OfficeActionTypes.EDIT_OFFICE_SUCCESS;
+  constructor(public payload: string) {}
+}
+
+export class EditOfficeFailureAction implements Action {
+  readonly type = OfficeActionTypes.EDIT_OFFICE_FAILURE;
+  constructor(public payload: Error) {}
+}
+
 export type OfficeAction =
   | LoadOfficesAction
   | LoadOfficesSuccessAction
@@ -103,4 +125,7 @@ export type OfficeAction =
   | DeleteOfficeFailureAction
   | LoadSingleOfficeAction
   | LoadSingleOfficeSuccessAction
-  | LoadSingleOfficeFailureAction;
+  | LoadSingleOfficeFailureAction
+  | EditOfficeAction
+  | EditOfficeSuccessAction
+  | EditOfficeFailureAction;
