@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ViewOfficeComponent } from './view-office/view-office.component';
 
-import { OfficesComponent } from './offices.component';
-
-const routes: Routes = [{ path: '', component: OfficesComponent }];
+const routes: Routes = [
+  { path: 'view-office/:id', component: ViewOfficeComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class OfficesRoutingModule { }
+export class OfficesRoutingModule {}

@@ -12,9 +12,17 @@ import {
   AddOfficeSuccessAction,
   AddOfficeFailureAction,
   DeleteOfficeAction,
+  DeleteOfficeSuccessAction,
+  DeleteOfficeFailureAction,
+  LoadSingleOfficeAction,
+  LoadSingleOfficeSuccessAction,
 } from '../actions/office.actions';
+import { Office } from '../models/office.model';
 @Injectable()
 export class OfficeEffects {
+  /**
+   * Load all offices
+   */
   @Effect() loadOffices$ = this.actions$.pipe(
     ofType<LoadOfficesAction>(OfficeActionTypes.LOAD_OFFICE),
     mergeMap(() =>
@@ -27,6 +35,24 @@ export class OfficeEffects {
     )
   );
 
+  /**
+   * Load Single Office
+   */
+  @Effect() loadSingleOffice$ = this.actions$.pipe(
+    ofType<LoadSingleOfficeAction>(OfficeActionTypes.LOAD_SINGLE_OFFICE),
+    mergeMap((data) =>
+      this.officeService.getOffice(data.payload.id).pipe(
+        map((office: Office) => {
+          return new LoadSingleOfficeSuccessAction(office.id);
+        }),
+        catchError((error) => of(new LoadOfficesFailureAction(error)))
+      )
+    )
+  );
+
+  /**
+   * Add a new office
+   */
   @Effect({ dispatch: false }) addOffice$ = this.actions$.pipe(
     ofType<AddOfficeAction>(OfficeActionTypes.ADD_OFFICE),
     mergeMap((data) =>
@@ -39,8 +65,21 @@ export class OfficeEffects {
     )
   );
 
+  /**
+   * Delete Office
+   */
   @Effect() deleteOffice$ = this.actions$.pipe(
-    ofType<DeleteOfficeAction>(OfficeActionTypes.DELETE_OFFICE)
+    ofType<DeleteOfficeAction>(OfficeActionTypes.DELETE_OFFICE),
+    mergeMap((data) =>
+      this.officeService
+        .deleteOffice(data.payload)
+        .then(() => {
+          new DeleteOfficeSuccessAction(data.payload);
+        })
+        .catch((error) => {
+          new DeleteOfficeFailureAction(error);
+        })
+    )
   );
 
   constructor(

@@ -19,6 +19,9 @@ export function OfficeReducer(
   action: OfficeAction
 ) {
   switch (action.type) {
+    /**
+     * LOAD OFFICES
+     */
     // Load Office
     case OfficeActionTypes.LOAD_OFFICE:
       return {
@@ -34,6 +37,29 @@ export function OfficeReducer(
       };
     // Load Office Failure
     case OfficeActionTypes.LOAD_OFFICE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    /**
+     * LOAD SINGLE OFFICE
+     */
+    // Load Single Office
+    case OfficeActionTypes.LOAD_SINGLE_OFFICE:
+      return {
+        ...state,
+        loading: true,
+      };
+    // Load Single Office Success
+    case OfficeActionTypes.LOAD_OFFICE_SUCCESS:
+      return {
+        ...state,
+        list: action.payload,
+        loading: false,
+      };
+    // Load Single Office Failure
+    case OfficeActionTypes.LOAD_SINGLE_OFFICE_FAILURE:
       return {
         ...state,
         error: action.payload,

@@ -13,7 +13,10 @@
           <!--Box That Contains The Office Details-->
           <div class="office_container">
             <!--LHS Col with colored background, icon + number-->
-            <div class="col left-col">
+            <div
+              class="col left-col"
+              (click)="onClickNavigateOffice(office.id)"
+            >
               <mat-icon>groups</mat-icon>
               <p>{{ office.totalEmployees }}/{{ office.maxOfficeOccupants }}</p>
             </div>

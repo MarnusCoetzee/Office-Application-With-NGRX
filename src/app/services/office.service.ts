@@ -40,6 +40,14 @@ export class OfficeService {
     );
   }
 
+  /**
+   * Function Gets Single Office
+   * @param officeId
+   */
+  getOffice(id: string) {
+    return this.db.collection('offices').doc(id).valueChanges();
+  }
+
   // Add new office
   addNewOffice(id: string, office: Office) {
     return this.db

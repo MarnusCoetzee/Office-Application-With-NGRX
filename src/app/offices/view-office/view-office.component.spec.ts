@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OfficesComponent } from './offices.component';
+import { ViewOfficeComponent } from './view-office.component';
 
-describe('OfficesComponent', () => {
-  let component: OfficesComponent;
-  let fixture: ComponentFixture<OfficesComponent>;
+describe('ViewOfficeComponent', () => {
+  let component: ViewOfficeComponent;
+  let fixture: ComponentFixture<ViewOfficeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfficesComponent ]
+      declarations: [ ViewOfficeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OfficesComponent);
+    fixture = TestBed.createComponent(ViewOfficeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,6 +6,8 @@ import { AppState } from '../../store/models/app-state.model';
 import { LoadOfficesAction } from '../../store/actions/office.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateNewOfficeDialogComponent } from '../dialogs/create-new-office-dialog/create-new-office-dialog.component';
+import { DeleteOfficeDialogComponent } from '../dialogs/delete-office-dialog/delete-office-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-all-offices',
   templateUrl: './all-offices.component.html',
@@ -16,7 +18,11 @@ export class AllOfficesComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<Error>;
 
-  constructor(private store: Store<AppState>, private dialog: MatDialog) {}
+  constructor(
+    private store: Store<AppState>,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initStoreFunctions();
@@ -30,6 +36,14 @@ export class AllOfficesComponent implements OnInit {
   }
 
   /**
+   * View Single Office
+   * @param id
+   */
+  onClickNavigateOffice(id: string) {
+    this.router.navigate(['offices/view-office', id]);
+  }
+
+  /**
    * Open Add New Office Dialog
    */
   onClickOpenAddOfficeDialog() {
@@ -38,9 +52,17 @@ export class AllOfficesComponent implements OnInit {
     dialogConfig.minHeight = '350px';
     this.dialog.open(CreateNewOfficeDialogComponent, dialogConfig);
   }
-  onClickNavigateOffice(id: string) {}
 
   onClickOpenEditOfficeDialog(id: string) {}
 
-  onClickOpenDeleteOfficeDialog(id: string, officeName: string) {}
+  onClickOpenDeleteOfficeDialog(id: string, officeName: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    dialogConfig.data = {
+      id,
+      officeName,
+    };
+    this.dialog.open(DeleteOfficeDialogComponent, dialogConfig);
+  }
 }

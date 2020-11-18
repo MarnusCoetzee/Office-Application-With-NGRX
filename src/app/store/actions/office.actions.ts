@@ -6,6 +6,10 @@ export enum OfficeActionTypes {
   LOAD_OFFICE = '[OFFICE] Load Office',
   LOAD_OFFICE_SUCCESS = '[OFFICE] Load Office Success',
   LOAD_OFFICE_FAILURE = '[OFFICE] Load Office Failure',
+  // Load Single Office
+  LOAD_SINGLE_OFFICE = '[OFFICE] Load Single Office',
+  LOAD_SINGLE_OFFICE_SUCCESS = '[OFFICE] Load Single Office Success',
+  LOAD_SINGLE_OFFICE_FAILURE = '[OFFICE] Load Single Office Failure',
   // add office
   ADD_OFFICE = '[OFFICE] Add Office',
   ADD_OFFICE_SUCCESS = '[OFFICE] Add Office Success',
@@ -30,6 +34,24 @@ export class LoadOfficesSuccessAction implements Action {
 
 export class LoadOfficesFailureAction implements Action {
   readonly type = OfficeActionTypes.LOAD_OFFICE_FAILURE;
+  constructor(public payload: Error) {}
+}
+
+/**
+ * Load single office actions
+ */
+export class LoadSingleOfficeAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_SINGLE_OFFICE;
+  constructor(public payload: Office) {}
+}
+
+export class LoadSingleOfficeSuccessAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_SINGLE_OFFICE_SUCCESS;
+  constructor(public payload: string) {}
+}
+
+export class LoadSingleOfficeFailureAction implements Action {
+  readonly type = OfficeActionTypes.LOAD_SINGLE_OFFICE_FAILURE;
   constructor(public payload: Error) {}
 }
 
@@ -78,4 +100,7 @@ export type OfficeAction =
   | AddOfficeFailureAction
   | DeleteOfficeAction
   | DeleteOfficeSuccessAction
-  | DeleteOfficeFailureAction;
+  | DeleteOfficeFailureAction
+  | LoadSingleOfficeAction
+  | LoadSingleOfficeSuccessAction
+  | LoadSingleOfficeFailureAction;
