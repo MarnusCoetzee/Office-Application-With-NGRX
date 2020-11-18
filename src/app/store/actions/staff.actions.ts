@@ -18,7 +18,7 @@ export class LoadStaffAction implements Action {
 
 export class LoadStaffSuccessAction implements Action {
   readonly type = StaffActiontypes.LOAD_STAFF_SUCCESS;
-  constructor(public staff: Array<Staff>) {}
+  constructor(public payload: Array<Staff>) {}
 }
 
 export class LoadStaffFailureAction implements Action {
