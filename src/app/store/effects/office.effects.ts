@@ -68,13 +68,13 @@ export class OfficeEffects {
   /**
    * Delete Office
    */
-  @Effect() deleteOffice$ = this.actions$.pipe(
+  @Effect({ dispatch: false }) deleteOffice$ = this.actions$.pipe(
     ofType<DeleteOfficeAction>(OfficeActionTypes.DELETE_OFFICE),
     mergeMap((data) =>
       this.officeService
-        .deleteOffice(data.payload)
+        .deleteOffice(data.officeId)
         .then(() => {
-          new DeleteOfficeSuccessAction(data.payload);
+          new DeleteOfficeSuccessAction(data.officeId);
         })
         .catch((error) => {
           new DeleteOfficeFailureAction(error);

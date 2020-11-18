@@ -78,7 +78,7 @@ export class AddOfficeFailureAction implements Action {
  */
 export class DeleteOfficeAction implements Action {
   readonly type = OfficeActionTypes.DELETE_OFFICE;
-  constructor(public payload: string) {}
+  constructor(public officeId: string) {}
 }
 
 export class DeleteOfficeSuccessAction implements Action {

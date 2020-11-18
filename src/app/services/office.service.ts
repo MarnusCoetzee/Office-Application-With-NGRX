@@ -72,7 +72,7 @@ export class OfficeService {
       .doc(id)
       .delete()
       .then(() => {
-        this.snackbar.open('Successfully created office', '', {
+        this.snackbar.open('Successfully deleted office', '', {
           duration: 2000,
         });
       })

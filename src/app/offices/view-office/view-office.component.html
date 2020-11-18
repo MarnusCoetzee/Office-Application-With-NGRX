@@ -21,5 +21,20 @@
         <p>Max Capacity: {{ office.maxOfficeOccupants }}</p>
       </div>
     </div>
+    <!--Search Bar That Filters Users-->
+    <div class="searchbar">
+      <form [formGroup]="searchForm">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Search Employees..."
+            formControlName="searchString"
+            autocomplete="off"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+    <!--Area That Displays Employees-->
   </div>
 </div>

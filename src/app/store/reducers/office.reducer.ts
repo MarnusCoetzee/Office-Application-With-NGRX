@@ -107,7 +107,6 @@ export function OfficeReducer(
     case OfficeActionTypes.DELETE_OFFICE_SUCCESS:
       return {
         ...state,
-        list: state.list.filter((item) => item.id !== action.payload),
         loading: false,
       };
     // Delete Office Failure
