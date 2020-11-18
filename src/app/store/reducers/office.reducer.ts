@@ -4,6 +4,7 @@ import { Office } from '../models/office.model';
 
 export interface OfficesState {
   list: Office[];
+  office: Office;
   loading: boolean;
   error: Error;
 }
@@ -12,6 +13,17 @@ const initialState: OfficesState = {
   list: [],
   loading: false,
   error: undefined,
+  office: {
+    id: '',
+    email: '',
+    location: '',
+    maxOfficeOccupants: 0,
+    ownerId: '',
+    name: '',
+    tellNumber: '',
+    totalEmployees: 0,
+    officeColor: 'black',
+  },
 };
 
 export function OfficeReducer(
@@ -52,10 +64,10 @@ export function OfficeReducer(
         loading: true,
       };
     // Load Single Office Success
-    case OfficeActionTypes.LOAD_OFFICE_SUCCESS:
+    case OfficeActionTypes.LOAD_SINGLE_OFFICE_SUCCESS:
       return {
         ...state,
-        list: action.payload,
+        office: action.payload,
         loading: false,
       };
     // Load Single Office Failure

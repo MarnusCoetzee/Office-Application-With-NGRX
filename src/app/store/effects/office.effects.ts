@@ -41,9 +41,9 @@ export class OfficeEffects {
   @Effect() loadSingleOffice$ = this.actions$.pipe(
     ofType<LoadSingleOfficeAction>(OfficeActionTypes.LOAD_SINGLE_OFFICE),
     mergeMap((data) =>
-      this.officeService.getOffice(data.payload.id).pipe(
+      this.officeService.getOffice(data.officeId).pipe(
         map((office: Office) => {
-          return new LoadSingleOfficeSuccessAction(office.id);
+          return new LoadSingleOfficeSuccessAction(office);
         }),
         catchError((error) => of(new LoadOfficesFailureAction(error)))
       )

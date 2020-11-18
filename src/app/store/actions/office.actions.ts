@@ -42,12 +42,12 @@ export class LoadOfficesFailureAction implements Action {
  */
 export class LoadSingleOfficeAction implements Action {
   readonly type = OfficeActionTypes.LOAD_SINGLE_OFFICE;
-  constructor(public payload: Office) {}
+  constructor(public officeId: string) {}
 }
 
 export class LoadSingleOfficeSuccessAction implements Action {
   readonly type = OfficeActionTypes.LOAD_SINGLE_OFFICE_SUCCESS;
-  constructor(public payload: string) {}
+  constructor(public payload: Office) {}
 }
 
 export class LoadSingleOfficeFailureAction implements Action {
