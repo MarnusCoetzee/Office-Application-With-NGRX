@@ -35,14 +35,36 @@
         </mat-form-field>
       </form>
     </div>
-  </div>
-  <!--Area That Displays Employees-->
-  <div *ngIf="(staff$ | async).length > 0">
-    <div *ngFor="let staff of staff$ | async">
-      <p>{{ staff.firstName }}</p>
+    <div class="employee-actions">
+      <p>
+        Staff Members: {{ office.totalEmployees }}/
+        {{ office.maxOfficeOccupants }}
+      </p>
+      <div *ngIf="office.totalEmployees < office.maxOfficeOccupants">
+        <button mat-raised-button>Add Staff Member</button>
+      </div>
+      <div *ngIf="!(office.totalEmployees < office.maxOfficeOccupants)">
+        <button mat-raised-button>Office Full</button>
+      </div>
     </div>
   </div>
-  <div *ngIf="(staff$ | async).length == 0">
-    <p>The Staff Does Not Exists</p>
+  <!--Area That Displays Employees-->
+  <!--Loading-->
+  <div *ngIf="staffLoading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+  <!--Not Loading-->
+  <div *ngIf="!(staffLoading$ | async)">
+    <!--Not empty staff array, show staff + staff actions-->
+    <div *ngIf="(staff$ | async).length > 0">
+      <div *ngFor="let staff of staff$ | async">
+        <p>{{ staff.firstName }}</p>
+      </div>
+    </div>
+    <!--Empty Staff Array, Show Add Staff Button-->
+    <div *ngIf="(staff$ | async).length == 0" class="empty-action">
+      <p>No Staff Added Yet</p>
+      <button mat-raised-button>Add First Staff Member</button>
+    </div>
   </div>
 </div>

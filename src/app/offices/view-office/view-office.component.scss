@@ -37,3 +37,69 @@
     width: 100%;
   }
 }
+
+.employee-actions {
+  margin: 0rem 2rem 0rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-self: center;
+
+  p {
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  button {
+    background-color: whitesmoke;
+    border-radius: 25px;
+  }
+}
+
+.employee-card {
+  margin: 7.5px 2rem 7.5px 2rem;
+}
+
+.card-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: start;
+  h1 {
+    margin-top: 1rem;
+    margin-left: 1px;
+  }
+  button {
+    margin-right: -15px;
+  }
+  .left-col {
+    width: 17.5%;
+  }
+  .right-col {
+    width: 17.5%;
+    button {
+      float: right;
+    }
+  }
+  .center-col {
+    width: 65%;
+    text-align: start;
+  }
+}
+
+.empty-action {
+  display: grid;
+  place-items: center;
+  background-color: whitesmoke;
+  padding: 1rem;
+  p {
+    font-size: 22px;
+    font-weight: 400;
+  }
+  button {
+    background-color: #0877ae;
+    color: white;
+    height: 46px;
+  }
+}

@@ -40,6 +40,7 @@ export class ViewOfficeComponent implements OnInit {
     this.officeId = this.activatedRoute.snapshot.paramMap.get('id');
     this.loadSingleOffice(this.officeId);
     this.initSearchForm();
+    this.loadStaff(this.officeId);
   }
 
   private initSearchForm() {
@@ -78,10 +79,15 @@ export class ViewOfficeComponent implements OnInit {
 
   private loadSingleOffice(id: string) {
     this.office$ = this.store.select((store) => store.office.office);
-    this.staff$ = this.store.select((store) => store.office?.staff);
     this.loading$ = this.store.select((store) => store.office.loading);
     this.error$ = this.store.select((store) => store.office.error);
     this.store.dispatch(new LoadSingleOfficeAction(id));
+  }
+
+  private loadStaff(id: string) {
+    this.staffLoading$ = this.store.select((store) => store.staff.loading);
+    this.staff$ = this.store.select((store) => store.staff.list);
+    this.staffError$ = this.store.select((store) => store.staff.error);
     this.store.dispatch(new LoadStaffAction(id));
   }
 
