@@ -138,26 +138,6 @@ export function OfficeReducer(
         loading: false,
         error: action.payload,
       };
-    /**
-     * Load Office Staff
-     */
-    case OfficeActionTypes.LOAD_OFFICE_STAFF:
-      return {
-        ...state,
-        loading: true,
-      };
-    case OfficeActionTypes.LOAD_OFFICE_STAFF_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        staff: action.staff,
-      };
-    case OfficeActionTypes.LOAD_OFFICE_STAFF_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
     default:
       return state;
   }

@@ -41,7 +41,12 @@
         {{ office.maxOfficeOccupants }}
       </p>
       <div *ngIf="office.totalEmployees < office.maxOfficeOccupants">
-        <button mat-raised-button>Add Staff Member</button>
+        <button
+          mat-raised-button
+          (click)="onClickOpenAddNewStaffMemberDialog()"
+        >
+          Add Staff Member
+        </button>
       </div>
       <div *ngIf="!(office.totalEmployees < office.maxOfficeOccupants)">
         <button mat-raised-button>Office Full</button>
@@ -57,14 +62,96 @@
   <div *ngIf="!(staffLoading$ | async)">
     <!--Not empty staff array, show staff + staff actions-->
     <div *ngIf="(staff$ | async).length > 0">
-      <div *ngFor="let staff of staff$ | async">
-        <p>{{ staff.firstName }}</p>
+      <!--Unfiltered -->
+      <div *ngIf="!showFiltered">
+        <div *ngFor="let staff of staff$ | async">
+          <div class="employee-cards">
+            <div class="employee-card">
+              <mat-card>
+                <div class="card-layout">
+                  <div class="left-col">
+                    <div class="avatar">
+                      <img
+                        mat-card-avatar
+                        src="../../../assets/defaultavatar.png"
+                      />
+                    </div>
+                  </div>
+                  <div class="middle-col">
+                    <h1>{{ staff.firstName }} {{ staff.lastName }}</h1>
+                  </div>
+                  <div class="right-col">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button
+                        mat-menu-item
+                        (click)="onClickOpenEditStaffDialog(staff)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit Staff</span>
+                      </button>
+                      <button
+                        mat-menu-item
+                        (click)="onClickOpenDeleteStaffDialog(staff)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove Staff</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Filtered Employees-->
+      <div *ngIf="showFiltered">
+        <!--Filtered Shown After Input-->
+        <div class="employee-cards" *ngIf="showFiltered">
+          <div class="employee-card" *ngFor="let employee of filteredEmployees">
+            <mat-card>
+              <div class="card-layout">
+                <div class="avatar">
+                  <img
+                    mat-card-avatar
+                    src="../../../assets/defaultavatar.png"
+                  />
+                </div>
+                <h1>{{ employee.firstName }} {{ employee.lastName }}</h1>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button
+                    mat-menu-item
+                    (click)="onClickOpenEditStaffDialog(employee)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Staff</span>
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="onClickOpenDeleteStaffDialog(employee)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                    <span>Remove Staff</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </mat-card>
+          </div>
+        </div>
       </div>
     </div>
     <!--Empty Staff Array, Show Add Staff Button-->
     <div *ngIf="(staff$ | async).length == 0" class="empty-action">
       <p>No Staff Added Yet</p>
-      <button mat-raised-button>Add First Staff Member</button>
+      <button mat-raised-button (click)="onClickOpenAddNewStaffMemberDialog()">
+        Add First Staff Member
+      </button>
     </div>
   </div>
 </div>

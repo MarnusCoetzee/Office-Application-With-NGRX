@@ -118,21 +118,6 @@ export class EditOfficeFailureAction implements Action {
   constructor(public payload: Error) {}
 }
 
-export class LoadOfficeStaffAction implements Action {
-  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF;
-  constructor(public officeId: string) {}
-}
-
-export class LoadOfficeStaffSuccessAction implements Action {
-  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF_SUCCESS;
-  constructor(public staff: Array<Staff>) {}
-}
-
-export class LoadOfficeStaffFailureAction implements Action {
-  readonly type = OfficeActionTypes.LOAD_OFFICE_STAFF_FAILURE;
-  constructor(public error: Error) {}
-}
-
 export type OfficeAction =
   | LoadOfficesAction
   | LoadOfficesSuccessAction
@@ -148,7 +133,4 @@ export type OfficeAction =
   | LoadSingleOfficeFailureAction
   | EditOfficeAction
   | EditOfficeSuccessAction
-  | EditOfficeFailureAction
-  | LoadOfficeStaffAction
-  | LoadOfficeStaffSuccessAction
-  | LoadOfficeStaffFailureAction;
+  | EditOfficeFailureAction;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -8,6 +9,9 @@ import { LoadStaffAction } from 'src/app/store/actions/staff.actions';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { Office } from 'src/app/store/models/office.model';
 import { Staff } from '../../store/models/staff.model';
+import { CreateEmployeeDialogComponent } from '../dialogs/create-employee-dialog/create-employee-dialog.component';
+import { DeleteEmployeeDialogComponent } from '../dialogs/delete-employee-dialog/delete-employee-dialog.component';
+import { EditEmployeeDialogComponent } from '../dialogs/edit-employee-dialog/edit-employee-dialog.component';
 @Component({
   selector: 'app-view-office',
   templateUrl: './view-office.component.html',
@@ -33,7 +37,8 @@ export class ViewOfficeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +46,11 @@ export class ViewOfficeComponent implements OnInit {
     this.loadSingleOffice(this.officeId);
     this.initSearchForm();
     this.loadStaff(this.officeId);
+    this.onChanges();
+    this.staff$.subscribe((staffResult: Array<Staff>) => {
+      console.log(staffResult);
+      this.employees = staffResult;
+    });
   }
 
   private initSearchForm() {
@@ -93,5 +103,28 @@ export class ViewOfficeComponent implements OnInit {
 
   onClickNavigateBack() {
     this.router.navigate(['home']);
+  }
+
+  onClickOpenAddNewStaffMemberDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    this.dialog.open(CreateEmployeeDialogComponent, dialogConfig);
+  }
+
+  onClickOpenDeleteStaffDialog(staff: Staff) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    dialogConfig.data = { staff };
+    this.dialog.open(DeleteEmployeeDialogComponent, dialogConfig);
+  }
+
+  onClickOpenEditStaffDialog(staff: Staff) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '350px';
+    dialogConfig.minHeight = '350px';
+    dialogConfig.data = { staff };
+    this.dialog.open(EditEmployeeDialogComponent, dialogConfig);
   }
 }

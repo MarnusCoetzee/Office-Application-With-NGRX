@@ -19,8 +19,6 @@ import {
   EditOfficeAction,
   EditOfficeSuccessAction,
   EditOfficeFailureAction,
-  LoadOfficeStaffSuccessAction,
-  LoadOfficeStaffAction,
 } from '../actions/office.actions';
 import { Office } from '../models/office.model';
 import {
@@ -104,18 +102,6 @@ export class OfficeEffects {
         .then(() => new EditOfficeSuccessAction(data.officeId))
         .catch((error) => new EditOfficeFailureAction(error))
     )
-  );
-
-  @Effect() loadAllStaff$ = this.actions$.pipe(
-    ofType<LoadOfficeStaffAction>(OfficeActionTypes.LOAD_OFFICE_STAFF),
-    mergeMap((payload) => {
-      return this.staffService.loadAllStaff(payload.officeId).pipe(
-        map((staff: Array<Staff>) => {
-          return new LoadOfficeStaffSuccessAction(staff);
-        }),
-        catchError((error) => of(new LoadStaffFailureAction(error)))
-      );
-    })
   );
 
   constructor(
