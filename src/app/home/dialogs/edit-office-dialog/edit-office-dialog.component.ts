@@ -127,6 +127,9 @@ export class EditOfficeDialogComponent implements OnInit {
       totalEmployees,
       officeColor,
     };
+    if (maxOfficeOccupants < 0) {
+      maxOfficeOccupants * -1;
+    }
     // check to see if the max occupants is less than current occupants
     if (totalEmployees > maxOfficeOccupants) {
       this.showError = true;
