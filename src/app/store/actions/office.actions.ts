@@ -110,7 +110,6 @@ export class EditOfficeAction implements Action {
 
 export class EditOfficeSuccessAction implements Action {
   readonly type = OfficeActionTypes.EDIT_OFFICE_SUCCESS;
-  constructor() {}
 }
 
 export class EditOfficeFailureAction implements Action {

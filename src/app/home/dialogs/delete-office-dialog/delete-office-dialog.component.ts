@@ -53,7 +53,7 @@ export class DeleteOfficeDialogComponent implements OnInit {
   }
 
   onClickDeleteOffice() {
-    const id = this.officeId;
+    const id = this.office.id;
     this.store.dispatch(new DeleteOfficeAction(id));
     setTimeout(() => {
       this.dialogRef.close();

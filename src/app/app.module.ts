@@ -18,6 +18,7 @@ import { StaffReducer } from './store/reducers/staff.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OfficeEffects } from './store/effects/office.effects';
 import { StaffEffects } from './store/effects/staff.effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,6 +31,7 @@ import { StaffEffects } from './store/effects/staff.effects';
     SharedModule,
     StoreModule.forRoot({ office: OfficeReducer, staff: StaffReducer }),
     EffectsModule.forRoot([OfficeEffects, StaffEffects]),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent],

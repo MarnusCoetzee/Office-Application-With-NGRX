@@ -26,6 +26,8 @@ export class EditOfficeDialogComponent implements OnInit {
   // office colour default
   selectedColour: string;
 
+  showError: boolean = false;
+
   constructor(
     private store: Store<AppState>,
     private dialogRef: MatDialogRef<EditOfficeDialogComponent>,
@@ -125,6 +127,11 @@ export class EditOfficeDialogComponent implements OnInit {
       totalEmployees,
       officeColor,
     };
+    // check to see if the max occupants is less than current occupants
+    if (totalEmployees > maxOfficeOccupants) {
+      this.showError = true;
+      return;
+    }
     // dispatch office to edit office action
     this.store.dispatch(new EditOfficeAction(office));
     setTimeout(() => {
