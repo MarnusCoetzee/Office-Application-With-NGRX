@@ -19,6 +19,8 @@ export class DeleteOfficeDialogComponent implements OnInit {
   officeId: string;
   officeName: string;
 
+  office: Office;
+
   office$: Observable<Office>;
   loading$: Observable<boolean>;
   error$: Observable<Error>;
@@ -26,18 +28,17 @@ export class DeleteOfficeDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DeleteOfficeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private snackbar: MatSnackBar,
     private store: Store<AppState>
   ) {
     // get data of office passed over via dialog data
-    this.officeId = data.id;
-    this.officeName = data.officeName;
+    this.office = data.office;
   }
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.getOffice(this.officeId);
+      this.getOffice(this.office.id);
     }, 100);
+    this.loading$ = this.store.select((store) => store.office.loading);
   }
 
   private getOffice(id: string) {
@@ -56,6 +57,6 @@ export class DeleteOfficeDialogComponent implements OnInit {
     this.store.dispatch(new DeleteOfficeAction(id));
     setTimeout(() => {
       this.dialogRef.close();
-    }, 500);
+    }, 200);
   }
 }

@@ -62,13 +62,12 @@ export class AllOfficesComponent implements OnInit {
     this.dialog.open(EditOfficeDialogComponent, dialogConfig);
   }
 
-  onClickOpenDeleteOfficeDialog(id: string, officeName: string) {
+  onClickOpenDeleteOfficeDialog(office: Office) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = '350px';
     dialogConfig.minHeight = '350px';
     dialogConfig.data = {
-      id,
-      officeName,
+      office,
     };
     this.dialog.open(DeleteOfficeDialogComponent, dialogConfig);
   }
