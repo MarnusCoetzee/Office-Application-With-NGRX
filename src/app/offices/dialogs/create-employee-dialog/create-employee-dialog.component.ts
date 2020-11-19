@@ -57,6 +57,7 @@ export class CreateEmployeeDialogComponent implements OnInit {
       employeeId,
       firstName,
       lastName,
+      officeId,
     };
     this.store.dispatch(new AddStaffAction(staff, officeId));
     setTimeout(() => {

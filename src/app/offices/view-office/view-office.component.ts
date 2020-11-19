@@ -48,7 +48,6 @@ export class ViewOfficeComponent implements OnInit {
     this.loadStaff(this.officeId);
     this.onChanges();
     this.staff$.subscribe((staffResult: Array<Staff>) => {
-      console.log(staffResult);
       this.employees = staffResult;
     });
   }
@@ -115,11 +114,11 @@ export class ViewOfficeComponent implements OnInit {
     this.dialog.open(CreateEmployeeDialogComponent, dialogConfig);
   }
 
-  onClickOpenDeleteStaffDialog(staff: Staff, officeId: string) {
+  onClickOpenDeleteStaffDialog(staff: Staff) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = '350px';
     dialogConfig.minHeight = '350px';
-    dialogConfig.data = { staff, officeId };
+    dialogConfig.data = { staff };
     this.dialog.open(DeleteEmployeeDialogComponent, dialogConfig);
   }
 

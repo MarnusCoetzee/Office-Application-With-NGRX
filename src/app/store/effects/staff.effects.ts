@@ -28,7 +28,6 @@ export class StaffEffects {
     mergeMap((data) =>
       this.staffService.loadAllStaff(data.officeId).pipe(
         map((staff: Array<Staff>) => {
-          console.log(staff);
           return new LoadStaffSuccessAction(staff);
         }),
         catchError((error) => of(new LoadStaffFailureAction(error)))

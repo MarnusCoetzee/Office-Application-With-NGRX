@@ -14,6 +14,7 @@ const initialState: StaffState = {
     firstName: '',
     lastName: '',
     employeeId: '',
+    officeId: '',
   },
   loading: false,
   error: undefined,

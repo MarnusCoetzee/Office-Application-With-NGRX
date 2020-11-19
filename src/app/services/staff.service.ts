@@ -17,7 +17,6 @@ export class StaffService {
    * LOAD ALL STAFF
    */
   loadAllStaff(id: string) {
-    console.log('Loading staff in office ' + id);
     return this.db
       .collection<Office>('offices')
       .doc(id)
@@ -52,6 +51,7 @@ export class StaffService {
         firstName,
         lastName,
         employeeId,
+        officeId,
       })
       .then(() => {
         this.increaseEmployeeTotal(officeId);
@@ -74,6 +74,7 @@ export class StaffService {
       .delete()
       .then(() => {
         this.decreaseEmployeeTotal(officeId);
+        this.snackService.presentSnackBar('Successfully removed employee', '');
       });
   }
 }
