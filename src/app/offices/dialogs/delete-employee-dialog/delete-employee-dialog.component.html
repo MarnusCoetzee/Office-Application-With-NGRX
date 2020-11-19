@@ -5,7 +5,7 @@
 <div *ngIf="!(loading$ | async)">
   <div class="container">
     <div class="exit-button">
-      <button mat-icon-button>
+      <button mat-icon-button (click)="onClickCloseDialog()">
         <mat-icon>close</mat-icon>
       </button>
     </div>

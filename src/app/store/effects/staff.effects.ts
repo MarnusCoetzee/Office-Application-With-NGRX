@@ -14,6 +14,9 @@ import {
   DeleteStaffAction,
   DeleteStaffSuccessAction,
   DeleteStaffFailureAction,
+  EditStaffAction,
+  EditStaffSuccessAction,
+  EditStaffFailureAction,
 } from '../actions/staff.actions';
 import { Staff } from '../models/staff.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
@@ -59,6 +62,20 @@ export class StaffEffects {
         })
         .catch((error) => {
           return new DeleteStaffFailureAction(error);
+        })
+    )
+  );
+
+  @Effect() editStaffMember$ = this.actions$.pipe(
+    ofType<EditStaffAction>(StaffActiontypes.EDIT_STAFF),
+    mergeMap((payload) =>
+      this.staffService
+        .editStaffMember(payload.payload)
+        .then(() => {
+          return new EditStaffSuccessAction();
+        })
+        .catch((error) => {
+          return new EditStaffFailureAction(error);
         })
     )
   );

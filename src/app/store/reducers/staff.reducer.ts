@@ -77,6 +77,22 @@ export function StaffReducer(
         loading: false,
         error: action.error,
       };
+    case StaffActiontypes.EDIT_STAFF:
+      return {
+        ...state,
+        loading: true,
+      };
+    case StaffActiontypes.EDIT_STAFF_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case StaffActiontypes.DELETE_STAFF_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
     default:
       return state;
   }

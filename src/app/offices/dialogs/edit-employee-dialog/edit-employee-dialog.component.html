@@ -1,1 +1,62 @@
-<p>edit-employee-dialog works!</p>
+<div *ngIf="loading$ | async">
+  <mat-spinner style="margin-top: 5vh"></mat-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="container">
+    <div class="exit-button">
+      <button mat-icon-button (click)="onClickCloseDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <br />
+    <div class="heading">
+      <h1>Edit Staff</h1>
+    </div>
+    <div class="form-fields">
+      <form [formGroup]="staffForm">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="First Name"
+            formControlName="firstName"
+            autocomplete="off"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="onClickClearTextField('firstName')"
+          >
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Last Name"
+            formControlName="lastName"
+            autocomplete="off"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="onClickClearTextField('lastName')"
+          >
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="action-btn">
+      <button
+        mat-raised-button
+        (click)="onClickUpdateUser()"
+        [disabled]="staffForm.invalid"
+      >
+        Save Staff
+      </button>
+    </div>
+  </div>
+</div>

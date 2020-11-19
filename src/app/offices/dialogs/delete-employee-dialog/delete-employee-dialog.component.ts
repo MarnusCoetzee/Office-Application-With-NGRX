@@ -34,4 +34,8 @@ export class DeleteEmployeeDialogComponent implements OnInit {
       this.dialogRef.close();
     }, 200);
   }
+
+  onClickCloseDialog() {
+    this.dialogRef.close();
+  }
 }

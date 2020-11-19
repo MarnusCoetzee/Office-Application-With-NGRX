@@ -77,4 +77,20 @@ export class StaffService {
         this.snackService.presentSnackBar('Successfully removed employee', '');
       });
   }
+
+  editStaffMember(staff: Staff) {
+    const employeeId = staff.employeeId;
+    const officeId = staff.officeId;
+    return this.db
+      .collection('offices')
+      .doc(officeId)
+      .collection('staff')
+      .doc(employeeId)
+      .update({
+        ...staff,
+      })
+      .then(() => {
+        this.snackService.presentSnackBar('Successfully updated employee', '');
+      });
+  }
 }

@@ -14,6 +14,10 @@ export enum StaffActiontypes {
   DELETE_STAFF = '[STAFF] Delete Staff',
   DELETE_STAFF_SUCCESS = '[STAFF] Delete Staff Success',
   DELETE_STAFF_FAILURE = '[STAFF] Delete Staff Failure',
+  // Edit Staff
+  EDIT_STAFF = '[STAFF] Edit Staff',
+  EDIT_STAFF_SUCCESS = '[STAFF] Edit Staff Success',
+  EDIT_STAFF_FAILURE = '[STAFF] Edit Staff Failure',
 }
 
 /**
@@ -63,6 +67,19 @@ export class DeleteStaffFailureAction implements Action {
   readonly type = StaffActiontypes.DELETE_STAFF_FAILURE;
   constructor(public error: Error) {}
 }
+
+export class EditStaffAction implements Action {
+  readonly type = StaffActiontypes.EDIT_STAFF;
+  constructor(public payload: Staff) {}
+}
+
+export class EditStaffSuccessAction implements Action {
+  readonly type = StaffActiontypes.EDIT_STAFF_SUCCESS;
+}
+export class EditStaffFailureAction implements Action {
+  readonly type = StaffActiontypes.EDIT_STAFF_FAILURE;
+  constructor(public payload: Error) {}
+}
 export type StaffAction =
   | LoadStaffAction
   | LoadStaffSuccessAction
@@ -72,4 +89,7 @@ export type StaffAction =
   | AddStaffFailureAction
   | DeleteStaffAction
   | DeleteStaffSuccessAction
-  | DeleteStaffFailureAction;
+  | DeleteStaffFailureAction
+  | EditStaffAction
+  | EditStaffSuccessAction
+  | EditStaffFailureAction;
