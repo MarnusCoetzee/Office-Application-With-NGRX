@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoadSingleOfficeAction } from 'src/app/store/actions/office.actions';
 import { LoadStaffAction } from 'src/app/store/actions/staff.actions';
 import { AppState } from 'src/app/store/models/app-state.model';
@@ -115,11 +115,11 @@ export class ViewOfficeComponent implements OnInit {
     this.dialog.open(CreateEmployeeDialogComponent, dialogConfig);
   }
 
-  onClickOpenDeleteStaffDialog(staff: Staff) {
+  onClickOpenDeleteStaffDialog(staff: Staff, officeId: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = '350px';
     dialogConfig.minHeight = '350px';
-    dialogConfig.data = { staff };
+    dialogConfig.data = { staff, officeId };
     this.dialog.open(DeleteEmployeeDialogComponent, dialogConfig);
   }
 

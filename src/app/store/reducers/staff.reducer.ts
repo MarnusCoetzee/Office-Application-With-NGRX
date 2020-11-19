@@ -60,6 +60,22 @@ export function StaffReducer(
         loading: false,
         error: action.payload,
       };
+    case StaffActiontypes.DELETE_STAFF:
+      return {
+        ...state,
+        loading: true,
+      };
+    case StaffActiontypes.DELETE_STAFF_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case StaffActiontypes.DELETE_STAFF_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
     default:
       return state;
   }

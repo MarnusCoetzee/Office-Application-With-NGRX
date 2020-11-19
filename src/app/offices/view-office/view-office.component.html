@@ -132,13 +132,17 @@
                     <mat-icon>edit</mat-icon>
                     <span>Edit Staff</span>
                   </button>
-                  <button
-                    mat-menu-item
-                    (click)="onClickOpenDeleteStaffDialog(employee)"
-                  >
-                    <mat-icon>delete</mat-icon>
-                    <span>Remove Staff</span>
-                  </button>
+                  <div *ngIf="office$ | async as office">
+                    <button
+                      mat-menu-item
+                      (click)="
+                        onClickOpenDeleteStaffDialog(employee, office.id)
+                      "
+                    >
+                      <mat-icon>delete</mat-icon>
+                      <span>Remove Staff</span>
+                    </button>
+                  </div>
                 </mat-menu>
               </div>
             </mat-card>
