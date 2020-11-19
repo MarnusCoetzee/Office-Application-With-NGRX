@@ -22,7 +22,8 @@ import { PhonePipe } from '../custom-pipes/phone.pipe';
 import { AddNewOfficeDirective } from './shell/directives/add-new-office.directive';
 import { SignoutButtonDirective } from './shell/directives/signout-button.directive';
 import { OfficeService } from '../services/office.service';
-const components = [ShellComponent, PhonePipe];
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+const components = [ShellComponent, PhonePipe, SplashScreenComponent];
 
 const directives = [AddNewOfficeDirective, SignoutButtonDirective];
 
