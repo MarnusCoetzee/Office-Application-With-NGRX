@@ -105,12 +105,12 @@ export class DeleteOfficeFailureAction implements Action {
  */
 export class EditOfficeAction implements Action {
   readonly type = OfficeActionTypes.EDIT_OFFICE;
-  constructor(public officeId: string, public office: Office) {}
+  constructor(public payload: Office) {}
 }
 
 export class EditOfficeSuccessAction implements Action {
   readonly type = OfficeActionTypes.EDIT_OFFICE_SUCCESS;
-  constructor(public payload: string) {}
+  constructor() {}
 }
 
 export class EditOfficeFailureAction implements Action {

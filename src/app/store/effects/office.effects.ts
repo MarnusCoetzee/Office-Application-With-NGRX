@@ -98,8 +98,8 @@ export class OfficeEffects {
     ofType<EditOfficeAction>(OfficeActionTypes.EDIT_OFFICE),
     mergeMap((data) =>
       this.officeService
-        .editOffice(data.officeId, data.office)
-        .then(() => new EditOfficeSuccessAction(data.officeId))
+        .editOffice(data.payload.id, data.payload)
+        .then(() => new EditOfficeSuccessAction())
         .catch((error) => new EditOfficeFailureAction(error))
     )
   );

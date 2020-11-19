@@ -34,6 +34,7 @@ export class CreateEmployeeDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.loading$ = this.store.select((store) => store.staff.loading);
   }
 
   private buildForm() {

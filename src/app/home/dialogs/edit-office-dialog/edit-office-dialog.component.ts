@@ -38,6 +38,7 @@ export class EditOfficeDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.office);
     this.initEditForm();
+    this.loading$ = this.store.select((store) => store.office.loading);
   }
 
   private initEditForm() {
@@ -125,8 +126,10 @@ export class EditOfficeDialogComponent implements OnInit {
       officeColor,
     };
     // dispatch office to edit office action
-    this.store.dispatch(new EditOfficeAction(id, office));
-    // close dialog after dispatch
-    this.dialogRef.close();
+    this.store.dispatch(new EditOfficeAction(office));
+    setTimeout(() => {
+      // close dialog after dispatch
+      this.dialogRef.close();
+    }, 200);
   }
 }
