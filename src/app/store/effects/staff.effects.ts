@@ -8,6 +8,9 @@ import {
   LoadStaffSuccessAction,
   LoadStaffFailureAction,
   StaffActiontypes,
+  AddStaffAction,
+  AddStaffSuccessAction,
+  AddStaffFailureAction,
 } from '../actions/staff.actions';
 import { Staff } from '../models/staff.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
@@ -27,6 +30,20 @@ export class StaffEffects {
         }),
         catchError((error) => of(new LoadStaffFailureAction(error)))
       )
+    )
+  );
+
+  @Effect() addNewStaffMember$ = this.actions$.pipe(
+    ofType<AddStaffAction>(StaffActiontypes.ADD_STAFF),
+    mergeMap((data) =>
+      this.staffService
+        .addNewStaffMember(data.officeId, data.payload)
+        .then(() => {
+          return new AddStaffSuccessAction();
+        })
+        .catch((err) => {
+          return new LoadStaffFailureAction(err);
+        })
     )
   );
 

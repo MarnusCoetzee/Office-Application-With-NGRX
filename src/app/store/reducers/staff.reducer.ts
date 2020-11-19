@@ -44,6 +44,22 @@ export function StaffReducer(
         loading: false,
         error: action.error,
       };
+    case StaffActiontypes.ADD_STAFF:
+      return {
+        ...state,
+        loading: true,
+      };
+    case StaffActiontypes.ADD_STAFF_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case StaffActiontypes.ADD_STAFF_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

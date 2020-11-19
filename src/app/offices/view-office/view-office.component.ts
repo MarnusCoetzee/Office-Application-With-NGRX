@@ -105,10 +105,13 @@ export class ViewOfficeComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  onClickOpenAddNewStaffMemberDialog() {
+  onClickOpenAddNewStaffMemberDialog(officeId: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = '350px';
     dialogConfig.minHeight = '350px';
+    dialogConfig.data = {
+      officeId,
+    };
     this.dialog.open(CreateEmployeeDialogComponent, dialogConfig);
   }
 

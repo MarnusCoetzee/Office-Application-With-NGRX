@@ -43,7 +43,7 @@
       <div *ngIf="office.totalEmployees < office.maxOfficeOccupants">
         <button
           mat-raised-button
-          (click)="onClickOpenAddNewStaffMemberDialog()"
+          (click)="onClickOpenAddNewStaffMemberDialog(office.id)"
         >
           Add Staff Member
         </button>
@@ -149,9 +149,14 @@
     <!--Empty Staff Array, Show Add Staff Button-->
     <div *ngIf="(staff$ | async).length == 0" class="empty-action">
       <p>No Staff Added Yet</p>
-      <button mat-raised-button (click)="onClickOpenAddNewStaffMemberDialog()">
-        Add First Staff Member
-      </button>
+      <div *ngIf="office$ | async as office">
+        <button
+          mat-raised-button
+          (click)="onClickOpenAddNewStaffMemberDialog(office.id)"
+        >
+          Add First Staff Member
+        </button>
+      </div>
     </div>
   </div>
 </div>
